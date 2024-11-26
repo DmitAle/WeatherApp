@@ -11,8 +11,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const srcPath = path.resolve(__dirname, './src');
-const ASSET_PATH = process.env.ASSET_PATH || '/';
 const publicPath = path.resolve(__dirname, './public');
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 const buildPath = path.resolve(__dirname, './build');
 const IS_DEV = process.env.NODE_ENV === 'development';
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -22,9 +22,9 @@ const config: Configuration & { devServer?: ServerConfiguration } = {
     main: `${srcPath}/app/entry/index.tsx`,
   },
   output: {
-    filename: '[name].[contenthash].js',
     path: buildPath,
-    clean: true,
+    publicPath: ASSET_PATH,
+    filename: IS_PROD ? 'build/[name].[contenthash].bundle.js' : 'build/[name].bundle.js',
   },
   mode: IS_DEV ? 'development' : 'production',
   devtool: IS_DEV ? 'source-map' : false,
@@ -106,7 +106,7 @@ const config: Configuration & { devServer?: ServerConfiguration } = {
       'process.env.YANDEX_WEATHER_API_URL': JSON.stringify(process.env.YANDEX_WEATHER_API_URL),
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: `${publicPath}/index.html`,
     }),
     new webpack.ProvidePlugin({
       process: 'process/browser.js',
