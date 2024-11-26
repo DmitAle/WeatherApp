@@ -1,0 +1,23 @@
+.sliderNext:disabled,
+.sliderPrev:disabled {
+  display: none;
+}
+
+.sliderNext,
+.sliderPrev {
+  position: absolute !important;
+  z-index: 10;
+  width: 30px;
+  width: 30px;
+  height: 30px;
+  background: #fff !important;
+}
+
+.sliderNext {
+  right: 0;
+}
+
+.sliderPrev > svg,
+.sliderNext > svg {
+  fill: #000;
+}

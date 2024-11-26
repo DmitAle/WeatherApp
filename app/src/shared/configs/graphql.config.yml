@@ -1,0 +1,15 @@
+schema:
+  https://api.weather.yandex.ru/graphql/query:
+    headers:
+      'X-Yandex-Weather-Key': '0a1cd93e-3187-43ed-9c42-116f47000f18'
+documents: src/**/*.graphql
+generates:
+  src/shared/utils/generated-types.tsx:
+    config:
+      withHooks: true
+      fetcher:
+        endpoint: 'https://api.weather.yandex.ru/graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

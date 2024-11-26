@@ -1,0 +1,9 @@
+.sliderNext:disabled,
+.sliderPrev:disabled {
+  opacity: 0.5;
+}
+
+.sliderNext > svg,
+.sliderPrev > svg {
+  fill: #fff;
+}

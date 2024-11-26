@@ -1,0 +1,38 @@
+query fetchWeatherData($lat: Float!, $lon: Float!, $limit: Int!) {
+  weatherByPoint(request: { lat: $lat, lon: $lon }) {
+    now {
+      temperature
+      condition
+      feelsLike
+      windSpeed
+      windDirection
+      icon(format: SVG)
+    }
+    forecast {
+      hours(first: 48) {
+        edges {
+          node {
+            timestamp
+            temperature
+            icon(format: SVG, theme: FLAT)
+          }
+        }
+      }
+      days(limit: $limit) {
+        time
+        summary {
+          day {
+            temperature
+            condition
+            icon(format: SVG)
+          }
+          night {
+            temperature
+            condition
+            icon(format: SVG)
+          }
+        }
+      }
+    }
+  }
+}
