@@ -16,7 +16,6 @@ export default [
   {
     root: true,
     ignores: ['node_modules/**/*', 'build/**/*', '**/generated-types.tsx'],
-
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.mjs'],
@@ -54,11 +53,17 @@ export default [
     rules: {
       'linebreak-style': ['error', 'unix'],
       'max-len': ['error', { code: 120, ignoreTrailingComments: true, ignoreUrls: true }],
-      'react/jsx-props-no-spreading': [
+      'react/jsx-props-no-spreading': ['error', { html: 'ignore', custom: 'ignore', exceptions: [''] }],
+      'comma-dangle': [
         'error',
-        { html: 'ignore', custom: 'ignore', exceptions: [''] },
+        {
+          arrays: 'always-multiline',
+          objects: 'always-multiline',
+          imports: 'always-multiline',
+          exports: 'always-multiline',
+          functions: 'always-multiline',
+        },
       ],
-      'comma-dangle': ['error', { arrays: 'always-multiline', objects: 'always-multiline', imports: 'always-multiline', exports: 'always-multiline', functions: 'always-multiline' }],
       'prefer-destructuring': ['error', { object: true, array: false }],
       'no-plusplus': ['warn', { allowForLoopAfterthoughts: true }],
       '@typescript-eslint/no-unused-vars': 'warn',
