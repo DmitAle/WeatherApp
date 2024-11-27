@@ -36,13 +36,9 @@ export const WeatherForecast = () => {
 
   let renameDay = '';
 
-  if (countDays && countDays > 4 && countDays < 10) {
+  if (countDays && (countDays % 10 > 4 || (countDays > 9 && countDays < 20))) {
     renameDay = `${i18n('forecast')} ${countDays} ${i18n('days')}`;
-  } else if (countDays && countDays < 5) {
-    renameDay = `${i18n('forecast')} ${countDays} ${i18n('day')}`;
-  } else if (countDays && countDays % 10 > 4) {
-    renameDay = `${i18n('forecast')} ${countDays} ${i18n('days')}`;
-  } else {
+  } else if (countDays) {
     renameDay = `${i18n('forecast')} ${countDays} ${i18n('day')}`;
   }
 
@@ -56,6 +52,8 @@ export const WeatherForecast = () => {
         borderRadius: 3,
         boxShadow: 3,
         maxWidth: '500px',
+        width: 'fit-content',
+        maxHeight: '245px',
       }}
     >
       <Typography variant="h6">{renameDay}</Typography>
